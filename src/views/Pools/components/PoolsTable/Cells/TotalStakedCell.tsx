@@ -14,7 +14,9 @@ interface TotalStakedCellProps {
 }
 
 const StyledCell = styled(BaseCell)`
-  flex: 2 0 100px;
+  flex: 2 0 200px;
+  padding-left: 8.5rem;
+  padding-right: 7rem;
 `
 
 const TotalStakedCell: React.FC<TotalStakedCellProps> = ({ pool }) => {
@@ -38,12 +40,14 @@ const TotalStakedCell: React.FC<TotalStakedCellProps> = ({ pool }) => {
   return (
     <StyledCell role="cell">
       <CellContent>
-        <Text fontSize="12px" color="textSubtle" textAlign="left">
+        {/* <Text fontSize="12px" color="textSubtle" textAlign="left">
           {t('Total staked')}
-        </Text>
+        </Text> */}
         {totalStaked && totalStaked.gte(0) ? (
-          <Flex height="20px" alignItems="center">
-            <Balance fontSize="16px" value={totalStakedBalance} decimals={0} unit={` ${stakingToken.symbol}`} />
+          <Flex height="20px" alignItems="center" justifyContent="space-between">
+            <Balance fontSize="16px" value={totalStakedBalance} decimals={0} unit="$" type="stakeBalance" />
+            {/* <Balance fontSize="16px" value={} decimals={0} unit="?" type="" /> */}
+            <Text>?</Text>
           </Flex>
         ) : (
           <Skeleton width="80px" height="16px" />

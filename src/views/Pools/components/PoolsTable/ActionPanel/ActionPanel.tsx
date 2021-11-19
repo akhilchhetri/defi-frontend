@@ -60,7 +60,9 @@ const StyledActionPanel = styled.div<{ expanded: boolean }>`
           ${collapseAnimation} 300ms linear forwards
         `};
   overflow: hidden;
-  background: ${({ theme }) => theme.colors.dropdown};
+  // background: ${({ theme }) => theme.colors.dropdown};
+  background: transparent;
+  border-bottom: 1px solid #dee2e6;
   display: flex;
   flex-direction: column-reverse;
   justify-content: center;
@@ -250,7 +252,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
         {(isXs || isSm) && aprRow}
         {(isXs || isSm || isMd) && totalStakedRow}
         {shouldShowBlockCountdown && blocksRow}
-        <Flex mb="8px" justifyContent={['flex-end', 'flex-end', 'flex-start']}>
+        {/* <Flex mb="8px" justifyContent={['flex-end', 'flex-end', 'flex-start']}>
           <LinkExternal href={`/info/token/${earningToken.address}`} bold={false}>
             {t('See Token Info')}
           </LinkExternal>
@@ -287,7 +289,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
         {tagTooltipVisible && tagTooltip}
         <span ref={tagTargetRef}>
           <HelpIcon ml="4px" width="20px" height="20px" color="textSubtle" />
-        </span>
+        </span> */}
       </InfoSection>
       <ActionContainer>
         {showSubtitle && (
@@ -296,7 +298,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
           </Text>
         )}
         {pool.isAutoVault ? (
-          <AutoHarvest {...pool} userDataLoaded={userDataLoaded} />
+          <AutoHarvest pool={pool} {...pool} userDataLoaded={userDataLoaded} />
         ) : (
           <Harvest {...pool} userDataLoaded={userDataLoaded} />
         )}

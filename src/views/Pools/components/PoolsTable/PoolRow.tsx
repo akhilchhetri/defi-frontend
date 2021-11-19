@@ -22,7 +22,9 @@ interface PoolRowProps {
 const StyledRow = styled.div`
   background-color: transparent;
   display: flex;
+  justify-content: space-between;
   cursor: pointer;
+  border-bottom: 1px solid #dee2e6;
 `
 
 const PoolRow: React.FC<PoolRowProps> = ({ pool, account, userDataLoaded }) => {
@@ -39,14 +41,17 @@ const PoolRow: React.FC<PoolRowProps> = ({ pool, account, userDataLoaded }) => {
     <>
       <StyledRow role="row" onClick={toggleExpanded}>
         <NameCell pool={pool} />
-        {pool.isAutoVault ? (
-          <AutoEarningsCell pool={pool} account={account} userDataLoaded={userDataLoaded} />
+        {/* {pool.isAutoVault ? (
+          // <AutoEarningsCell pool={pool} account={account} userDataLoaded={userDataLoaded} />
+          <h1>Hello</h1>
         ) : (
-          <EarningsCell pool={pool} account={account} userDataLoaded={userDataLoaded} />
-        )}
+          // <EarningsCell pool={pool} account={account} userDataLoaded={userDataLoaded} />
+          <h1>Hello</h1>
+        )} */}
         {pool.isAutoVault ? <AutoAprCell pool={pool} /> : <AprCell pool={pool} />}
+
         {isLargerScreen && <TotalStakedCell pool={pool} />}
-        {isDesktop && <EndsInCell pool={pool} />}
+        {/* {isDesktop && <EndsInCell pool={pool} />} */}
         <ExpandActionCell expanded={expanded} isFullLayout={isTablet || isDesktop} />
       </StyledRow>
       {shouldRenderActionPanel && (

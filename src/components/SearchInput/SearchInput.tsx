@@ -16,6 +16,9 @@ const StyledInput = styled(Input)`
     // box-shadow: ${({ theme }) => theme.shadows.focus};
     box-shadow: none;
   }
+  ::placeholder {
+    color: #cad0d7;
+  }
 `
 
 const InputWrapper = styled.div`

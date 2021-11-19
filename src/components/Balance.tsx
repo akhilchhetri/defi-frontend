@@ -9,6 +9,7 @@ interface BalanceProps extends TextProps {
   isDisabled?: boolean
   prefix?: string
   onClick?: (event: React.MouseEvent<HTMLElement>) => void
+  type?: string
 }
 
 const Balance: React.FC<BalanceProps> = ({
@@ -19,6 +20,7 @@ const Balance: React.FC<BalanceProps> = ({
   unit,
   prefix,
   onClick,
+  type,
   ...props
 }) => {
   const previousValue = useRef(0)
@@ -26,18 +28,29 @@ const Balance: React.FC<BalanceProps> = ({
   useEffect(() => {
     previousValue.current = value
   }, [value])
-
   return (
     <Text color={isDisabled ? 'textDisabled' : color} onClick={onClick} {...props}>
-      <CountUp
-        start={previousValue.current}
-        end={value}
-        prefix={prefix}
-        suffix={unit}
-        decimals={decimals}
-        duration={1}
-        separator=","
-      />
+      {type === 'stakeBalance' ? (
+        <CountUp
+          start={previousValue.current}
+          end={value}
+          prefix={unit}
+          suffix={prefix}
+          decimals={decimals}
+          duration={1}
+          separator=","
+        />
+      ) : (
+        <CountUp
+          start={previousValue.current}
+          end={value}
+          prefix={prefix}
+          suffix={unit}
+          decimals={decimals}
+          duration={1}
+          separator=","
+        />
+      )}
     </Text>
   )
 }

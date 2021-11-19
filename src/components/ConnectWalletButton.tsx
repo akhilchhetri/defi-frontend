@@ -5,6 +5,7 @@ import useAuth from 'hooks/useAuth'
 import { useTranslation } from 'contexts/Localization'
 
 const StyledConnectButton = styled(Button)`
+  padding: 1rem;
   background: ${({ theme }) => theme.colors.doodaPrimary};
   border-radius: 2px;
 `

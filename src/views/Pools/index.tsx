@@ -35,17 +35,23 @@ import BountyCard from './components/BountyCard'
 import HelpButton from './components/HelpButton'
 import PoolsTable from './components/PoolsTable/PoolsTable'
 import { getAprData, getCakeVaultEarnings } from './helpers'
+import ToggleView from './components/ToggleView/ToggleView'
 
 const CardLayout = styled(FlexLayout)`
-  justify-content: center;
+  // justify-content: space-between;
+  justify-content: flex-start;
+  margin-top: 1rem;
 `
 
 const PoolControls = styled.div`
+  border-radius: 4px;
+  box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.08);
+  background-color: #fff;
   display: flex;
   width: 100%;
   align-items: center;
   position: relative;
-
+  margin-bottom: 1rem;
   justify-content: space-between;
   flex-direction: column;
   margin-bottom: 32px;
@@ -70,15 +76,45 @@ const FilterContainer = styled.div`
   }
 `
 
-const LabelWrapper = styled.div`
-  > ${Text} {
-    font-size: 12px;
-  }
+const StyledHeading = styled(Heading)`
+  font-weight: bold;
+  line-height: 1.8;
 `
 
 const ControlStretch = styled(Flex)`
   > div {
     flex: 1;
+  }
+`
+const StyledBelowHeading = styled(Heading)`
+  font-size: 13px;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.85;
+  letter-spacing: -0.8px;
+  text-align: left;
+  color: #99a2ab;
+`
+const ViewControls = styled.div`
+  flex-wrap: wrap;
+  justify-content: space-between;
+  display: flex;
+  height: 3.5rem;
+  align-items: center;
+  width: 45% !important;
+
+  > div {
+    padding: 8px 0px;
+  }
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    justify-content: flex-start;
+    width: auto;
+
+    > div {
+      padding: 0;
+    }
   }
 `
 
@@ -245,6 +281,13 @@ const Pools: React.FC = () => {
           <PoolCard key={pool.sousId} pool={pool} account={account} />
         ),
       )}
+      {chosenPools.map((pool) =>
+        pool.isAutoVault ? (
+          <CakeVaultCard key="auto-cake" pool={pool} showStakedOnly={stakedOnly} />
+        ) : (
+          <PoolCard key={pool.sousId} pool={pool} account={account} />
+        ),
+      )}
     </CardLayout>
   )
 
@@ -255,24 +298,35 @@ const Pools: React.FC = () => {
       <PageHeader>
         <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
           <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
-            <Heading as="h1" scale="xxl" color="secondary" mb="24px">
-              {t('Syrup Pools')}
-            </Heading>
-            <Heading scale="md" color="text">
-              {t('Just stake some tokens to earn.')}
-            </Heading>
-            <Heading scale="md" color="text">
-              {t('High APR, low risk.')}
-            </Heading>
+            <StyledHeading as="h6" scale="md" color="doodaPrimary" mb="24px">
+              {t('DOODA DEPOSIT')}
+            </StyledHeading>
+            <StyledBelowHeading scale="md" color="doodaDark">
+              {t('If you deposit your DOODA,')}
+            </StyledBelowHeading>{' '}
+            <StyledBelowHeading scale="md" color="doodaDark">
+              {t(' We reward various digital assets.')}
+            </StyledBelowHeading>
           </Flex>
-          <Flex flex="1" height="fit-content" justifyContent="center" alignItems="center" mt={['24px', null, '0']}>
-            <HelpButton />
-            <BountyCard />
+          <Flex flex="1" height="fit-content" justifyContent="center" alignItems="center" mt={['0px', null, '0']}>
+            {/* <HelpButton /> */}
+            {/* <BountyCard /> */}
+            <Image src="/images/pools/poolsImage.png" width={350} height={300} />
           </Flex>
         </Flex>
       </PageHeader>
       <Page>
         <PoolControls>
+          {/* <Flex
+            flex="2"
+            height="fit-content"
+            justifyContent="space-between"
+            alignItems="center"
+            mt={['0px', null, '0']}
+          > */}
+          {/* <ViewControls> */}
+          <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
+          {/* </ViewControls> */}
           <PoolTabButtons
             stakedOnly={stakedOnly}
             setStakedOnly={setStakedOnly}
@@ -280,8 +334,9 @@ const Pools: React.FC = () => {
             viewMode={viewMode}
             setViewMode={setViewMode}
           />
-          <FilterContainer>
-            <LabelWrapper>
+          {/* </Flex> */}
+          {/* <FilterContainer> */}
+          {/* <LabelWrapper>
               <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
                 {t('Sort by')}
               </Text>
@@ -308,14 +363,8 @@ const Pools: React.FC = () => {
                   onOptionChange={handleSortOptionChange}
                 />
               </ControlStretch>
-            </LabelWrapper>
-            <LabelWrapper style={{ marginLeft: 16 }}>
-              <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
-                {t('Search')}
-              </Text>
-              <SearchInput onChange={handleChangeSearchQuery} placeholder="Search Pools" />
-            </LabelWrapper>
-          </FilterContainer>
+            </LabelWrapper> */}
+          {/* </FilterContainer> */}
         </PoolControls>
         {showFinishedPools && (
           <Text fontSize="20px" color="failure" pb="32px">
@@ -329,14 +378,14 @@ const Pools: React.FC = () => {
         )}
         {viewMode === ViewMode.CARD ? cardLayout : tableLayout}
         <div ref={observerRef} />
-        <Image
+        {/* <Image
           mx="auto"
           mt="12px"
           src="/images/decorations/3d-syrup-bunnies.png"
           alt="Pancake illustration"
           width={192}
           height={184.5}
-        />
+        /> */}
       </Page>
     </>
   )

@@ -11,6 +11,7 @@ interface FooterProps {
   pool: DeserializedPool
   account: string
   totalCakeInVault?: BigNumber
+  isExpanded?: boolean
 }
 
 const ExpandableButtonWrapper = styled(Flex)`
@@ -20,11 +21,14 @@ const ExpandableButtonWrapper = styled(Flex)`
     padding: 0;
   }
 `
+const StyledCardFooter = styled(CardFooter)`
+  border: none !important;
+`
 
-const Footer: React.FC<FooterProps> = ({ pool, account }) => {
+const Footer: React.FC<FooterProps> = ({ pool, account, isExpanded }) => {
   const { isAutoVault } = pool
   const { t } = useTranslation()
-  const [isExpanded, setIsExpanded] = useState(false)
+  // const [isExpanded, setIsExpanded] = useState(false)
 
   const manualTooltipText = t('You must harvest and compound your earnings from this pool manually.')
   const autoTooltipText = t(
@@ -36,8 +40,8 @@ const Footer: React.FC<FooterProps> = ({ pool, account }) => {
   })
 
   return (
-    <CardFooter>
-      <ExpandableButtonWrapper>
+    <StyledCardFooter>
+      {/* <ExpandableButtonWrapper>
         <Flex alignItems="center">
           {isAutoVault ? <CompoundingPoolTag /> : <ManualPoolTag />}
           {tooltipVisible && tooltip}
@@ -48,9 +52,9 @@ const Footer: React.FC<FooterProps> = ({ pool, account }) => {
         <ExpandableLabel expanded={isExpanded} onClick={() => setIsExpanded(!isExpanded)}>
           {isExpanded ? t('Hide') : t('Details')}
         </ExpandableLabel>
-      </ExpandableButtonWrapper>
+      </ExpandableButtonWrapper> */}
       {isExpanded && <ExpandedFooter pool={pool} account={account} />}
-    </CardFooter>
+    </StyledCardFooter>
   )
 }
 

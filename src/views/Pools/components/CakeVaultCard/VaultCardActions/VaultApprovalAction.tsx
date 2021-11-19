@@ -2,6 +2,7 @@ import React from 'react'
 import { Button, AutoRenewIcon, Skeleton } from '@doodaswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { useVaultApprove } from '../../../hooks/useApprove'
+import { StyledStakeButton } from '../../PoolsTable/ActionPanel/styles'
 
 interface ApprovalActionProps {
   setLastUpdated: () => void
@@ -18,7 +19,7 @@ const VaultApprovalAction: React.FC<ApprovalActionProps> = ({ isLoading = false,
       {isLoading ? (
         <Skeleton width="100%" height="52px" />
       ) : (
-        <Button
+        <StyledStakeButton
           isLoading={requestedApproval}
           endIcon={requestedApproval ? <AutoRenewIcon spin color="currentColor" /> : null}
           disabled={requestedApproval}
@@ -26,7 +27,7 @@ const VaultApprovalAction: React.FC<ApprovalActionProps> = ({ isLoading = false,
           width="100%"
         >
           {t('Enable')}
-        </Button>
+        </StyledStakeButton>
       )}
     </>
   )

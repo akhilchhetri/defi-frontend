@@ -13,7 +13,7 @@ import { PoolCategory } from 'config/constants/types'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { useERC20 } from 'hooks/useContract'
 import { convertSharesToCake } from 'views/Pools/helpers'
-import { ActionContainer, ActionTitles, ActionContent } from './styles'
+import { ActionContainer, ActionTitles, ActionContent, StyledStakeButton } from './styles'
 import NotEnoughTokensModal from '../../PoolCard/Modals/NotEnoughTokensModal'
 import StakeModal from '../../PoolCard/Modals/StakeModal'
 import VaultStakeModal from '../../CakeVaultCard/VaultStakeModal'
@@ -134,9 +134,9 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
     return (
       <ActionContainer>
         <ActionTitles>
-          <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
+          {/* <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
             {t('Start staking')}
-          </Text>
+          </Text> */}
         </ActionTitles>
         <ActionContent>
           <ConnectWalletButton width="100%" />
@@ -149,9 +149,9 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
     return (
       <ActionContainer>
         <ActionTitles>
-          <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
+          {/* <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
             {t('Start staking')}
-          </Text>
+          </Text> */}
         </ActionTitles>
         <ActionContent>
           <Skeleton width={180} height="32px" marginTop={14} />
@@ -164,14 +164,14 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
     return (
       <ActionContainer>
         <ActionTitles>
-          <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
+          {/* <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
             {t('Enable pool')}
-          </Text>
+          </Text> */}
         </ActionTitles>
         <ActionContent>
-          <Button width="100%" disabled={requestedApproval} onClick={handleApprove} variant="secondary">
+          <StyledStakeButton width="100%" disabled={requestedApproval} onClick={handleApprove}>
             {t('Enable')}
-          </Button>
+          </StyledStakeButton>
         </ActionContent>
       </ActionContainer>
     )
@@ -237,9 +237,9 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
   return (
     <ActionContainer>
       <ActionTitles>
-        <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
+        {/* <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
           {t('Stake')}{' '}
-        </Text>
+        </Text> */}
         <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
           {stakingToken.symbol}
         </Text>
