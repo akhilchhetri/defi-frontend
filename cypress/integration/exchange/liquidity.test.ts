@@ -10,8 +10,8 @@ describe('Pool', () => {
     cy.url().should('contain', '/liquidity')
   })
 
-  it('import pool links to /find', () => {
-    cy.get('#import-pool-link').click()
-    cy.url().should('contain', '/find')
-  })
+  // it('import pool links to /find', () => {
+  //   cy.get('#import-pool-link').click()
+  //   cy.url().should('contain', '/find')
+  // })
 })

@@ -19,11 +19,11 @@ describe('Remove Liquidity', () => {
     cy.get('#remove-liquidity-tokenb-symbol').should('contain.text', 'BNB')
   })
 
-  it('loads the two correct tokens', () => {
-    cy.visit('/remove/0x5014d0abfc8428f0f8ccd0c5f010fe47569d8d34/0xC0063D362A8EA40Cb32A774c75683429c2B4860c')
-    cy.get('#remove-liquidity-tokena-symbol').should('contain.text', 'DOODA')
-    cy.get('#remove-liquidity-tokenb-symbol').should('contain.text', 'BUSD')
-  })
+  // it('loads the two correct tokens', () => {
+  //   cy.visit('/remove/0x5014d0abfc8428f0f8ccd0c5f010fe47569d8d34/0xC0063D362A8EA40Cb32A774c75683429c2B4860c')
+  //   cy.get('#remove-liquidity-tokena-symbol').should('contain.text', 'DOODA')
+  //   cy.get('#remove-liquidity-tokenb-symbol').should('contain.text', 'BUSD')
+  // })
 
   it('does not crash if BNB is duplicated', () => {
     cy.visit('/remove/BNB/BNB')
